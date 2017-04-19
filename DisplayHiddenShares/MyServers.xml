@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ServerDefinitions>
+  <Servers>
+    <ServerDefinition>
+      <HostName>s7t2521a.adr.admin.ch</HostName>
+      <Description>GDWH Vector Test</Description>
+    </ServerDefinition>
+    <ServerDefinition>
+      <HostName>s0t2522a.adr.admin.ch</HostName>
+      <Description>GDWH Vector Prod</Description>
+    </ServerDefinition>
+  </Servers>
+</ServerDefinitions>
