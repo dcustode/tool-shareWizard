@@ -1,0 +1,12 @@
+{
+  "Servers": [
+    {
+      "HostName": "s9t4579a.adr.admin.ch",
+      "Description": "Webadaptor Portal Test"
+    },
+    {
+      "HostName": "s9t4579b.adr.admin.ch",
+      "Description": "Webadaptor Portal Test"
+    }
+  ]
+}
