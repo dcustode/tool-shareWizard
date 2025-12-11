@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             grpBxServers = new GroupBox();
             dataGridView1 = new DataGridView();
             clmHostName = new DataGridViewTextBoxColumn();
-            splitContainer1 = new SplitContainer();
+            Status = new DataGridViewTextBoxColumn();
             grpBxShares = new GroupBox();
             lstVwShares = new ListView();
             grpBxSelServer = new GroupBox();
@@ -39,22 +40,20 @@
             btnClose = new Button();
             grpBxServers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
-            splitContainer1.Panel1.SuspendLayout();
-            splitContainer1.Panel2.SuspendLayout();
-            splitContainer1.SuspendLayout();
             grpBxShares.SuspendLayout();
             grpBxSelServer.SuspendLayout();
             SuspendLayout();
             // 
             // grpBxServers
             // 
-            grpBxServers.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            grpBxServers.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             grpBxServers.AutoSize = true;
             grpBxServers.Controls.Add(dataGridView1);
-            grpBxServers.Location = new Point(3, 3);
+            grpBxServers.Location = new Point(12, 4);
+            grpBxServers.Margin = new Padding(3, 4, 3, 4);
             grpBxServers.Name = "grpBxServers";
-            grpBxServers.Size = new Size(272, 560);
+            grpBxServers.Padding = new Padding(3, 4, 3, 4);
+            grpBxServers.Size = new Size(567, 896);
             grpBxServers.TabIndex = 0;
             grpBxServers.TabStop = false;
             grpBxServers.Text = "Servers";
@@ -63,15 +62,17 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { clmHostName });
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(3, 19);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { clmHostName, Status });
+            dataGridView1.Location = new Point(6, 28);
+            dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersWidth = 51;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(266, 538);
+            dataGridView1.Size = new Size(550, 852);
             dataGridView1.TabIndex = 0;
             dataGridView1.DoubleClick += dataGridView1_DoubleClick;
             // 
@@ -79,35 +80,29 @@
             // 
             clmHostName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             clmHostName.HeaderText = "Hostname";
+            clmHostName.MinimumWidth = 6;
             clmHostName.Name = "clmHostName";
             clmHostName.ReadOnly = true;
             // 
-            // splitContainer1
+            // Status
             // 
-            splitContainer1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            splitContainer1.Location = new Point(12, 12);
-            splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            splitContainer1.Panel1.Controls.Add(grpBxServers);
-            splitContainer1.Panel1MinSize = 250;
-            // 
-            // splitContainer1.Panel2
-            // 
-            splitContainer1.Panel2.Controls.Add(grpBxShares);
-            splitContainer1.Panel2.Controls.Add(grpBxSelServer);
-            splitContainer1.Size = new Size(834, 566);
-            splitContainer1.SplitterDistance = 278;
-            splitContainer1.SplitterWidth = 5;
-            splitContainer1.TabIndex = 1;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(255, 224, 192);
+            Status.DefaultCellStyle = dataGridViewCellStyle1;
+            Status.HeaderText = "Function";
+            Status.MinimumWidth = 100;
+            Status.Name = "Status";
+            Status.ReadOnly = true;
+            Status.Width = 250;
             // 
             // grpBxShares
             // 
+            grpBxShares.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             grpBxShares.Controls.Add(lstVwShares);
-            grpBxShares.Location = new Point(3, 113);
+            grpBxShares.Location = new Point(590, 166);
+            grpBxShares.Margin = new Padding(3, 4, 3, 4);
             grpBxShares.Name = "grpBxShares";
-            grpBxShares.Size = new Size(546, 450);
+            grpBxShares.Padding = new Padding(3, 4, 3, 4);
+            grpBxShares.Size = new Size(450, 734);
             grpBxShares.TabIndex = 1;
             grpBxShares.TabStop = false;
             grpBxShares.Text = "Shares";
@@ -115,9 +110,10 @@
             // lstVwShares
             // 
             lstVwShares.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lstVwShares.Location = new Point(6, 22);
+            lstVwShares.Location = new Point(7, 29);
+            lstVwShares.Margin = new Padding(3, 4, 3, 4);
             lstVwShares.Name = "lstVwShares";
-            lstVwShares.Size = new Size(534, 422);
+            lstVwShares.Size = new Size(436, 695);
             lstVwShares.TabIndex = 0;
             lstVwShares.UseCompatibleStateImageBehavior = false;
             lstVwShares.View = View.List;
@@ -127,27 +123,32 @@
             // 
             grpBxSelServer.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             grpBxSelServer.Controls.Add(txtBxServer);
-            grpBxSelServer.Location = new Point(3, 3);
+            grpBxSelServer.Location = new Point(597, 19);
+            grpBxSelServer.Margin = new Padding(3, 4, 3, 4);
             grpBxSelServer.Name = "grpBxSelServer";
-            grpBxSelServer.Size = new Size(541, 104);
+            grpBxSelServer.Padding = new Padding(3, 4, 3, 4);
+            grpBxSelServer.Size = new Size(443, 139);
             grpBxSelServer.TabIndex = 0;
             grpBxSelServer.TabStop = false;
             grpBxSelServer.Text = "Selected Server";
             // 
             // txtBxServer
             // 
-            txtBxServer.Location = new Point(11, 20);
+            txtBxServer.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtBxServer.Location = new Point(13, 27);
+            txtBxServer.Margin = new Padding(3, 4, 3, 4);
             txtBxServer.Name = "txtBxServer";
-            txtBxServer.Size = new Size(526, 23);
+            txtBxServer.Size = new Size(423, 27);
             txtBxServer.TabIndex = 0;
             txtBxServer.KeyDown += txtBxServer_KeyDown;
             // 
             // btnClose
             // 
             btnClose.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnClose.Location = new Point(771, 586);
+            btnClose.Location = new Point(952, 915);
+            btnClose.Margin = new Padding(3, 4, 3, 4);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(75, 23);
+            btnClose.Size = new Size(86, 31);
             btnClose.TabIndex = 2;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = true;
@@ -155,37 +156,36 @@
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(858, 621);
+            ClientSize = new Size(1052, 962);
+            Controls.Add(grpBxServers);
+            Controls.Add(grpBxSelServer);
+            Controls.Add(grpBxShares);
             Controls.Add(btnClose);
-            Controls.Add(splitContainer1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Share wizard";
             Load += Form1_Load;
             grpBxServers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            splitContainer1.Panel1.ResumeLayout(false);
-            splitContainer1.Panel1.PerformLayout();
-            splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
-            splitContainer1.ResumeLayout(false);
             grpBxShares.ResumeLayout(false);
             grpBxSelServer.ResumeLayout(false);
             grpBxSelServer.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private GroupBox grpBxServers;
-        private SplitContainer splitContainer1;
         private GroupBox grpBxShares;
         private GroupBox grpBxSelServer;
         private Button btnClose;
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn clmHostName;
         private ListView lstVwShares;
         private TextBox txtBxServer;
+        private DataGridViewTextBoxColumn clmHostName;
+        private DataGridViewTextBoxColumn Status;
     }
 }
