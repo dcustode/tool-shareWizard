@@ -1,6 +1,8 @@
 using Microsoft.VisualBasic.Devices;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Net.NetworkInformation;
+using System.Threading.Tasks;
 
 namespace hiddenShares
 {
@@ -16,7 +18,7 @@ namespace hiddenShares
             Close();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
             ServerDefinitions serverDefinitions;
 
@@ -27,13 +29,59 @@ namespace hiddenShares
                 serverDefinitions = (ServerDefinitions)serializer.Deserialize(file, typeof(ServerDefinitions));
             }
 
+
             foreach (ServerDefinition server in serverDefinitions.Servers)
             {
                 int index = dataGridView1.Rows.Add(new object[] { server.HostName, server.Description });
                 dataGridView1.Rows[index].Tag = server;
-            }
 
+                dataGridView1.Rows[index].Cells[1].Style.BackColor = await GetStatusColor(server.HostName);
+
+                if (server.HostName.ToLower().StartsWith("s7"))
+                {
+                    dataGridView1.Rows[index].DefaultCellStyle.BackColor = Color.LightYellow;
+                }
+                else if (server.HostName.ToLower().StartsWith("s8"))
+                {
+                    dataGridView1.Rows[index].DefaultCellStyle.BackColor = Color.LightSkyBlue;
+
+                }
+                else if (server.HostName.ToLower().StartsWith("s9"))
+                {
+                    dataGridView1.Rows[index].DefaultCellStyle.BackColor = Color.LightGray;
+
+                }
+                else
+                {
+                    dataGridView1.Rows[index].DefaultCellStyle.BackColor = Color.LightSalmon;
+                }
+            }
         }
+
+        public async Task<Color> GetStatusColor(string hostname)
+        {
+            bool isReachable = await IsHostReachable(hostname);
+            return isReachable ? Color.LightGreen : Color.LightPink;
+        }
+
+        public async Task<bool> IsHostReachable(string hostNameOrAddress, int timeout = 2000)
+        {
+            try
+            {
+                using (Ping ping = new Ping())
+                {
+                    PingReply reply = await ping.SendPingAsync(hostNameOrAddress, timeout);
+                    return reply.Status == IPStatus.Success;
+                }
+            }
+            catch
+            {
+                // Handle exceptions (e.g., invalid host name, network issues)
+                return false;
+            }
+        }
+
+
         public string ServerName
         {
             get
